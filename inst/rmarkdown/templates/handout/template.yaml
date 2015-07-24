@@ -1,0 +1,4 @@
+name: IFAR PDF Handout
+description: >
+  Template for creating a reproducible handout designed by Dr. Thomas G. Travison. It is intended to be used within Institute for Aging Research at Hebrew Seniorlife until it's fully developped.
+create_dir: TRUE

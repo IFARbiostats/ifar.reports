@@ -1,0 +1,72 @@
+---
+title: "A Demonstration of IFAR.handout PDF template"
+author: Hao Zhu, MA \& Thomas G. Travison, PhD
+date: 23 July 2015
+documentclass: article
+output: ifar.reports::handout
+---
+---
+abstract:  \thispagestyle{firststyle} \vskip 30em This document provides an example of how to use ifar_handout template to produce well-formated pdf documents.   \clearpage
+---
+
+[//]: # (Uncomment below for lists of tables and figures)
+\clearpage \listoftables \listoffigures \clearpage
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+#opts_chunk$set(cache=F, size='Large', fig.pos='H', dev='cairo_pdf', dev.args=list(family="libertine"))
+opts_chunk$set(comment=NA, warning=F, tidy=T, message=F)
+opts_knit$set(aliases=c(h = 'fig.height', w = 'fig.width', c='fig.cap'))
+options(digits=3) 
+par(lend=1)
+.dt <- date()
+```
+
+
+# Introduction
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+# Section 2
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+summary(cars)
+```
+
+## Section 2.1
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+\clearpage
+
+# Section 3
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r, echo=FALSE, results="asis"}
+library(xtable)
+mtcar2 <- cbind(mtcars, mtcars)
+print(xtable(mtcar2[1:6,1:11]))
+#mktable2(exclude, use.rownames=F, caption="Participants excluded$^a$ from per-protocol analysis.", shortcap = "Participants excluded from per-protocol analysis", alignment="lSSS",  headerrows=0, labelwidth=.15, colnames=exclude.descrip, size="footnotesize", footnotes="A total of 27 individuals excluded for non-adherence to study procedures (either or both adherence scores less than 0.60), and an additional two with BMI greater than 35 kg/m$^2$ at trial baseline", label="PPexclude")
+```
+
+\clearpage 
+
+## Flow of participants through the trial
+
+### Intention-to-treat sample
+
+
+
+
+```{r, echo=FALSE, results="asis"}
+#mktable2(t1, transpose=T, caption="Description of ITT sample, N = 149; Mean (Standard Deviation) or N (Percent) shown.", shortcap="Description of Intention-to-Treat Sample", row.descrip = t1.descrip, size="small", footnotes=c("Proportion of planned exercise visits attended", "Proportion of planned supplements taken", "Participants with both exercise and product compliance scores at least 0.60", "Excludes two individuals with out-of-range BMI values at screening"), label="description", alignment="cc", headerrows=1, headerlabel="", labelwidth=.35, width=.9)
+
+```
+
+
+\clearpage
+
+
