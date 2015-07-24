@@ -4,8 +4,8 @@ Title: A Collection of stylesheets/report templates
 Version: 0.1
 Date: 2015-07-22
 Authors@R: c(
-      person("Thomas", "Travison", "G.", "tgt@hsl.harvard.edu", role = c("aut"),
-      person("Hao", "Zhu", , "haozhu@hsl.harvard.edu", role = c("aut"),
+      person("Thomas", "Travison", ,"tgt@hsl.harvard.edu", role = c("aut")),
+      person("Hao", "Zhu", , "haozhu@hsl.harvard.edu", role = c("aut", "cre"))
       )
 Description: Programmers at Institute for Aging Research in Hebrew Seniorlife are creating (or will create) many elegant stylesheets and report templates. This package is designed to recycle these ideas and efforts and make these reports reusable in the future. All of these templates should only be used within IFAR until they are fully developped.
 License: CC

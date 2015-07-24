@@ -185,6 +185,12 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
+%%%%%%%%%%%%%%%%%%%%%% Customized tgt 2014.12.16 %%%%%%%%%%%
+% Modified by Hao 7/23/2015
+%     - use package libertine and unicode-math to avoid fonts installation
+%     - Move xcolor to the top to avoid package loading error
+%     - Change dollarsign < dollarsign to \(  < \) to avoid a pandoc error
+
 %% document formatting
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor} % colors for tables and text
 \usepackage{ragged2e} % justifying text

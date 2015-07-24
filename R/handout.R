@@ -1,6 +1,6 @@
 #' @export
 
-ifar.handout <- function(keep_tex = T, toc = T, toc_depth = 4, includes = NULL) {
+handout <- function(keep_tex = T, toc = T, toc_depth = 4, includes = NULL) {
   template <- find_resource("handout", "template.ifar.tex")
   #csl <- find_resource("handout", "american-medical-association.csl")
 
