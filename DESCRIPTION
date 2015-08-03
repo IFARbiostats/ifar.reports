@@ -1,8 +1,8 @@
 Package: ifar.reports
 Type: Package
 Title: A Collection of stylesheets/report templates
-Version: 0.1
-Date: 2015-07-22
+Version: 0.2
+Date: 2015-07-31
 Authors@R: c(
       person("Thomas", "Travison", ,"tgt@hsl.harvard.edu", role = c("aut")),
       person("Hao", "Zhu", , "haozhu@hsl.harvard.edu", role = c("aut", "cre"))
