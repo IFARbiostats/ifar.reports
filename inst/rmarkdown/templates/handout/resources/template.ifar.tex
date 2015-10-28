@@ -49,7 +49,7 @@ $endif$
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $else$
-\usepackage[top=1in, bottom=.75in, left = 1in, right=1in]{geometry}
+\usepackage[top=1in, bottom=.75in, left = 1in, right=1in, includeheadfoot]{geometry}
 $endif$
 $if(lang)$
 \ifxetex
