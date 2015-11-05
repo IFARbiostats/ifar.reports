@@ -440,7 +440,7 @@ $endif$
 
 % auto swap
 \usepackage{array}
-\newcolumntype{L}{>{\centering\arraybackslash}m{6cm}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 % spacing
 
  %\setlength{\parskip}{1cm plus2mm minus1mm}
