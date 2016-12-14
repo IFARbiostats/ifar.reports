@@ -1,6 +1,6 @@
 #' @export
 
-handout <- function(keep_tex = T, toc = T, toc_depth = 4, includes = NULL) {
+handout <- function(keep_tex = F, toc = T, toc_depth = 4, includes = NULL, ...) {
   template <- find_resource("handout", "template.ifar.tex")
   #csl <- find_resource("handout", "american-medical-association.csl")
 
@@ -15,7 +15,8 @@ handout <- function(keep_tex = T, toc = T, toc_depth = 4, includes = NULL) {
     toc_depth =toc_depth,
     fig_caption = TRUE,
     includes = includes,
-    pandoc_args = NULL
+    pandoc_args = NULL,
+    ...
   )
 
   # Create knitr options (ensure opts and hooks are non-null)
