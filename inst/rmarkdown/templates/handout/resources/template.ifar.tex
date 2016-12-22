@@ -8,7 +8,8 @@ $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
 $endif$
-\usepackage{amssymb,amsmath}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
@@ -103,15 +104,15 @@ $endif$
 \else
   \usepackage[unicode=true]{hyperref}
 \fi
-\hypersetup{breaklinks=true,
-            bookmarks=true,
-            pdfauthor={$author-meta$},
-            pdftitle={$title-meta$},
-            colorlinks=true,
-            citecolor=$if(citecolor)$$citecolor$$else$green$endif$,
-            urlcolor=$if(urlcolor)$$urlcolor$$else$blue$endif$,
-            linkcolor=$if(linkcolor)$$linkcolor$$else$blue$endif$,
-            pdfborder={0 0 0}}
+%\hypersetup{breaklinks=true,
+%            bookmarks=true,
+%            pdfauthor={$author-meta$},
+%            pdftitle={$title-meta$},
+%            colorlinks=true,
+%            citecolor=$if(citecolor)$$citecolor$$else$green$endif$,
+%            urlcolor=$if(urlcolor)$$urlcolor$$else$blue$endif$,
+%            linkcolor=$if(linkcolor)$$linkcolor$$else$blue$endif$,
+%            pdfborder={0 0 0}}
 \urlstyle{same}  % don't use monospace font for urls
 $if(links-as-notes)$
 % Make links footnotes instead of hotlinks:
@@ -217,10 +218,15 @@ $endfor$
 \usepackage{xltxtra}
 \usepackage{gensymb} %degree symbol
 \usepackage[osf]{libertine} %load Linux Libertine so no need for installation
-\usepackage{unicode-math}
 
-\defaultfontfeatures{Mapping=tex?text, Numbers={Proportional, OldStyle}, Ligatures=TeX}
-\setmathfont{Asana-Math.otf}
+%\usepackage[cmintegrals, cmbraces, libertine]{newtxmath}
+
+\usepackage{unicode-math}
+\setmathfont{LinLibertine_R.otf}
+
+%\setmathfont{texgyrepagella-math.otf}
+%\defaultfontfeatures{Mapping=tex?text, Numbers={Proportional, OldStyle}, Ligatures=TeX}
+% \setmathfont{Asana-Math.otf}
 
 \usepackage{microtype}
 \usepackage{float} % used to fix floating objects to a specific spot
@@ -339,7 +345,7 @@ $endif$
 \postauthor{\end{flushleft}}
 
 \predate{\par\begin{flushleft}\large\vskip -1em}
-\postdate{\end{flushleft}  }
+\postdate{\end{flushleft} }
 
 
 %\predate{\begin{flushright}}
