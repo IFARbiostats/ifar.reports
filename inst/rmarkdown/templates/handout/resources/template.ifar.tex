@@ -70,8 +70,12 @@ $if(biblio-files)$
 \bibliography{$biblio-files$}
 $endif$
 $endif$
-$if(listings)$
-\usepackage{listings}
+$if(listings)$ % modifed tgt 13 jan 2017
+\usepackage{listings, color, upquote}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{numbers=left, numberstyle=\tiny, stepnumber= 10, firstline=3, numbersep=15pt, breaklines=true, keepspaces=T, language=R, basicstyle=\scriptsize\ttfamily, commentstyle=\color{mygreen}, extendedchars=true, keywordstyle=\color{blue}, showspaces=false, showstringspaces=false, tabsize=2, showtabs=false, stringstyle=\color{mymauve}} % break long lines
 $endif$
 $if(lhs)$
 \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
@@ -205,17 +209,17 @@ $endfor$
 
 
 %% codelisting at end of file
-\usepackage{listings, color, upquote}
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
-\lstset{numbers=left, numberstyle=\tiny, stepnumber= 10, firstline=3, numbersep=15pt, breaklines=true, keepspaces=T, language=R, basicstyle=\scriptsize\ttfamily, commentstyle=\color{mygreen}, extendedchars=true, keywordstyle=\color{blue}, showspaces=false, showstringspaces=false, tabsize=2, showtabs=false, stringstyle=\color{mymauve}} % break long lines
+%\usepackage{listings, color, upquote}
+%\definecolor{mygreen}{rgb}{0,0.6,0}
+%\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+%\definecolor{mymauve}{rgb}{0.58,0,0.82}
+%\lstset{numbers=left, numberstyle=\tiny, stepnumber= 10, firstline=3, numbersep=15pt, breaklines=true, keepspaces=T, language=R, basicstyle=\scriptsize\ttfamily, commentstyle=\color{mygreen}, extendedchars=true, keywordstyle=\color{blue}, showspaces=false, showstringspaces=false, tabsize=2, showtabs=false, stringstyle=\color{mymauve}} % break long lines
 
 %% fonts setup
 
-\usepackage{fontspec}
-\usepackage{xunicode} %xelatex access to accents, etc
-\usepackage{xltxtra}
+%\usepackage{fontspec}
+%\usepackage{xunicode} %xelatex access to accents, etc
+%\usepackage{xltxtra}
 \usepackage{gensymb} %degree symbol
 \usepackage[osf]{libertine} %load Linux Libertine so no need for installation
 
