@@ -6,7 +6,7 @@ documentclass: article
 output: ifar.reports::handout
 ---
 ---
-abstract:  \thispagestyle{firststyle} \vskip 30em This document provides an example of how to use ifar_handout template to produce well-formated pdf documents.   \clearpage
+abstract:  \thispagestyle{firststyle} \vskip 30em This document provides an example of how to use ifar_handout template to produce well-formatted pdf documents.   \clearpage
 ---
 
 [//]: # (Uncomment below for lists of tables and figures)
