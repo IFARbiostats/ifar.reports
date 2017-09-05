@@ -1,4 +1,4 @@
-\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+\documentclass[$if(fontsize)$$fontsize$$else$11pt,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 $if(fontfamily)$
 \usepackage{$fontfamily$}
 $else$
@@ -48,6 +48,8 @@ $endif$
 }{}
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$else$
+\usepackage[top=0.5in, bottom=.4in, left = 1in, right=1in, includeheadfoot]{geometry}
 $endif$
 $if(lang)$
 \ifxetex
@@ -80,9 +82,7 @@ $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 \VerbatimFootnotes
 $endif$
-$if(tables)$
 \usepackage{longtable,booktabs}
-$endif$
 $if(graphics)$
 \usepackage{graphicx}
 \makeatletter
@@ -105,7 +105,6 @@ $endif$
             bookmarks=true,
             pdfauthor={$author-meta$},
             pdftitle={$title-meta$},
-            fontsize=$if(fontsize)$$fontsize$$else$11pt$endif$,
             colorlinks=true,
             citecolor=$if(citecolor)$$citecolor$$else$green$endif$,
             urlcolor=$if(urlcolor)$$urlcolor$$else$blue$endif$,
@@ -147,277 +146,6 @@ $endif$
     }
 }
 
-%% document formatting
-\usepackage[usenames,dvipsnames,svgnames,table]{xcolor} % colors for tables and text
-\usepackage{ragged2e} % justifying text
-\usepackage{setspace} % spacing commands, automatically makes captions single-spaced
-  \setstretch{1.2} \frenchspacing
-\usepackage{lastpage} % access number of last page for numbering in margin
-\usepackage{pdflscape} % for page rotation
-\usepackage{tabularx,tabulary}
-\usepackage{tabu}
-
-
-
-%% codelisting at end of file
-\usepackage{listings, color, upquote}
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
-\lstset{numbers=left, numberstyle=\tiny, stepnumber= 10, firstline=3, numbersep=15pt, breaklines=true, keepspaces=T, language=R, basicstyle=\scriptsize\ttfamily, commentstyle=\color{mygreen}, extendedchars=true, keywordstyle=\color{blue}, showspaces=false, showstringspaces=false, tabsize=2, showtabs=false, stringstyle=\color{mymauve}} % break long lines
-
-%% fonts setup
-
-\usepackage{fontspec}
-\usepackage{xunicode} %xelatex access to accents, etc
-\usepackage{xltxtra}
-\usepackage{gensymb} %degree symbol
-\usepackage{libertine} %load Linux Libertine so no need for installation
-\usepackage{unicode-math}
-
-\defaultfontfeatures{Mapping=tex?text, Numbers={Proportional, OldStyle}, Ligatures=TeX}
-\setmathfont{Asana-Math.otf}
-
-\usepackage{microtype}
-\usepackage{float} % used to fix floating objects to a specific spot
-
-%% tables and figures
-
-% include section number in figure and table numbers, renew in each section
-\usepackage{chngcntr}
-\counterwithin{table}{section}
-\counterwithin{figure}{section}
-
-\usepackage{array} % for dealing with table spacing
-\usepackage[flushleft]{threeparttablex} % tables with caption, content, footnotes; captions and footnotes the same width as table body (wrapping)
-\usepackage{makecell} % allow linebreaks in table cells using \thead (headers) and \makecell
-\usepackage{etoolbox}
-\robustify\tnote
-
-\usepackage{booktabs, dcolumn, float, titlesec, microtype} % formatted tables, decimal alignment, dealing with floats, title and section formatting
-
-
-% spacing around multicolumns using new "C" alignment
-
-%\newlength\tbspace
-%\setlength\tbspace{2in}
-%\newcolumntype{L}{l<{\hspace{\tbspace}}}
-
-
-
-% text and spacing inside tables
-
-\newcommand{\head}[1]{% column header environment
-  {\small \setstretch{.85} \begin{tabular}[c]{ @{}c@{}}
-  #1
-  \end{tabular}}%
-}
-
-\setlength{\tabcolsep}{4.5pt} % space between table columns
- \renewcommand{\arraystretch}{1.5} % space between table rows
-%\setlength{\extrarowheight}{10pt}
-
-
-% table/figure captions (titles and legends)
-\usepackage{caption}
-\DeclareCaptionFormat{llap}{\llap{#1#2}#3\par} % table / figure number in left margin
-\DeclareCaptionLabelSeparator{spc}{\hspace{.075 in}} % space between table number and caption
-\captionsetup{font={color=blue, sf}, singlelinecheck=off, margin= 15pt, skip=4pt, size=small, labelfont={sc, sf}, format=llap, labelsep=spc,singlelinecheck=no} % same font as headers
-
-
-% non-table footnotes
-
-\usepackage[hang]{footmisc}
-
-
-% [para,online,flushleft]
-
-% headers and footers
-
-% put title in headers
-\makeatletter
-\let\runtitle\@title
-\makeatother
-
- \usepackage{fancyhdr}
-  \pagestyle{fancy}
-  \fancyhf{}
-  % \rhead{ \nouppercase{\rightmark}  \hspace{.1 in} \cdot \hspace{.1 in} \thepage}
-  % \hspace{.05 in} of \hspace{.05 in} \pageref{LastPage}
-  \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0.5pt}
-   \rhead{ \footnotesize \nouppercase{\sc \runtitle} \hspace{.025 in} \cdot \hspace{.055 in} page \thepage \hspace{.018 in} of \hspace{.0015 in}  \pageref*{LastPage}}
-   \lhead{\textcolor{red}{\it Confidential; do not circulate}}
-   \cfoot{\footnotesize Program on Clinical Trials \hspace{.025 in} \cdot \hspace{.05 in} 1200 Centre St. Boston, MA, USA 02131 \hspace{.025 in} \cdot \hspace{.05 in} 617.971.5386 \hspace{.025 in} \cdot \hspace{.05 in} tgt@hsl.harvard.edu  }
-
-% title page
-
- \fancypagestyle{firststyle}
- {\fancyhf{}
-  \cfoot{\footnotesize Program on Clinical Trials \hspace{.025 in} \cdot \hspace{.05 in} 1200 Centre St. Boston, MA, USA 02131 \hspace{.025 in} \cdot \hspace{.05 in} 617.971.5386 \hspace{.025 in} \cdot \hspace{.05 in} tgt@hsl.harvard.edu  }
- }
-
-% Hebrew SeniorLife \hspace{.025 in} \cdot \hspace{.05 in} Institute for Aging Research \\
-
-%\fancypagestyle{firststyle}
-%{
-%   \fancyhf{}
-%   \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}
-%}
-
-%% section headings font and spacing
-\usepackage{titlesec}
-\usepackage{titling}
-
-\newfontfamily\headingfont[]{LinBiolinum_R.otf}
-\titleformat*{\section}{\sc \large \color[rgb]{0,0,0} \headingfont}
-\titleformat*{\subsection}{\large \headingfont}
-\titleformat*{\subsubsection}{\normalsize \headingfont}
-\renewcommand{\maketitlehooka}{\headingfont}
-
-\titlespacing\section{0pt}{8pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
-\titlespacing\subsection{0pt}{6pt plus 2pt minus 2pt}{-2pt plus 2pt minus 2pt}
-\titlespacing\subsubsection{0pt}{2pt plus 2pt minus 2pt}{-3pt plus 2pt minus 2pt}
-
-
-% set up title page
-\pretitle{ \begin{flushright} \vskip -5em
-\includegraphics[width=7cm, keepaspectratio]{logo.pdf}
-\end{flushright} \vskip 5em \begin{flushleft}\LARGE}
-\posttitle{\end{flushleft}}
-
-\preauthor{\par\begin{flushleft}\large\vskip -.5em}
-\postauthor{\end{flushleft}}
-
-\predate{\par\begin{flushleft}\large\vskip -1em}
-\postdate{\end{flushleft}  }
-
-
-%\predate{\begin{flushright}}
-%\postdate{\par\end{flushright}\vskip 0.5em}
-
-
-%% definition and spacing of section numbers
-
-% put section numbers in margin
-\makeatletter
-\def\@seccntformat#1{\llap{\csname the#1\endcsname \hspace{.075 in}}}
-\makeatother
-
-% suppress chapter in section numbering
-\renewcommand*\thesection{\arabic{section}}
-
-% spacing of bulleted lists
-\usepackage{enumitem} %control spacing of enumerated items
-\setlist[itemize]{noitemsep, topsep=0pt}
-
-%% hypertext links
-\usepackage[]{hyperref}
-
-%% remove 'abstract' title, justify text
-\renewcommand{\abstractname}{\headingfont \large}
-\renewenvironment{abstract} {\abstractname \justifying \rm \normalsize }
-
-% -------------------------
-
-
-\usepackage{tikz}
-
- %\usepackage[top=.75in, bottom=.75in, left=.5in, right=.5in]{geometry}
-
- %\usepackage[margin=.5in]{geometry}
-
-%\setmainfont
-  %   [ BoldFont       = texgyrepagella-bold.otf ,
-     %  ItalicFont     = texgyrepagella-italic.otf ,
-     %  BoldItalicFont = texgyrepagella-bolditalic.otf ]
-     %{texgyrepagella-regular.otf}
-
-%\usepackage{mathspec}
-%\setmainfont[Numbers=OldStyle]{Palatino}
-%\setmathfont(Digits,Greek,Latin)[Numbers=OldStyle]{Asana Math}
-
-% \setmainfont[Scale=1.0,Numbers={OldStyle,Proportional},Ligatures=TeX]{Minion Pro}
-% \usepackage[osf]{mathpazo}
-
-% \renewcommand*\rmdefault{jkpxosn}
-
-% \usepackage[sc,osf]{mathpazo}
-% \normalfont
-
-% table decimal alignment
-\usepackage[detect-all]{siunitx}
-
-\sisetup{table-format = 3.3, input-symbols = >()<, tight-spacing = true, table-space-text-pre = \(<\)} % table-align-text-post = false,
-
-%\newcolumntype{C}{@{\extracolsep{5cm}}c@{\extracolsep{0pt}}}%
-%\newcolumntype{T}{@{\extracolsep{2cm}}S@{\extracolsep{0pt}}}%
-%\newcolumntype{R}{@{\extracolsep{3cm}}r@{\extracolsep{0pt}}}%
-%\newcolumntype{L}{@{\extracolsep{3cm}}l@{\extracolsep{0pt}}}%
-%\newcolumntype{Y}{@{\extracolsep{.5in}}X@{\extracolsep{0pt}}}%
-
-\newlength\tbspace
-\setlength\tbspace{.25in}
-\newcolumntype{T}{S<{\hspace{\tbspace}}}
-\newcolumntype{C}{c<{\hspace{\tbspace}}}
-
-
-\newcolumntype{d}{D{.}{.}{-1}} % decimal justify table contents
-\newcolumntype{z}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
-
-% \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} % for text wrapped table columns
-% \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-% \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-
-
-% font specifications
-%\setmainfont{Palatino}
-%\setmathfont{Asana Math}
-%\setmathfont[range=\mathup/{num, roman}]{Palatino} % change numerals only
-%\setmathfont[range=\mathbfup/{num, roman}]{Palatino}
-%\setmathfont[range=\mathit/{num, roman}]{Palatino}
-%\setmathfont[range=\mathbfit/{num, roman}]{Palatino}
-
-
-% units.
-\usepackage{units}
-
-% graphix
-\usepackage{graphicx}
-\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
-
-
-% spacing
-
- %\setlength{\parskip}{1cm plus2mm minus1mm}
-
-
-
- % spacing, title, setion headers
-
-% \usepackage{setspace}
-% \singlespacing
-% \onehalfspacing
-% \doublespacing
-% \setstrech{1.1}
-
-
-
-
-%\newpagestyle{main}[\small\sffamily]{
-%  \sethead [\textbf{\thepage}]
-%           [\textsl{\chaptertitle}]
-%           [[\toptitlemarks\thesection--\bottitlemarks\thesection]
-%           {\toptitlemarks\thesection--\bottitlemarks\thesection]}
-%           {\textsl{\sectiontitle}}
-%           {\textbf{\thepage}}}
-
-%\pagestyle{main}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% end tgt customize %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 \setlength{\droptitle}{-2em}
 $if(title)$
   \title{$title$}
@@ -452,21 +180,175 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
+%%%%%%%%%%%%%%%%%%%%%% Customized tgt 2014.12.16 %%%%%%%%%%%
+% Modified by Hao 7/23/2015
+%     - use package libertine and unicode-math to avoid fonts installation
+%     - Move xcolor to the top to avoid package loading error
+%     - Change dollarsign < dollarsign to \(  < \) to avoid a pandoc error
+
+%% document formatting
+\usepackage[table]{xcolor} % colors for tables and text
+\usepackage{ragged2e} % justifying text
+\usepackage{setspace} % spacing commands, automatically makes captions single-spaced
+  \setstretch{1.2} \frenchspacing
+\usepackage{lastpage} % access number of last page for numbering in margin
+\usepackage{pdflscape} % for page rotation
+\usepackage{tabularx,tabulary}
+\usepackage{tabu}
+
+
+
+%% codelisting at end of file
+\usepackage{listings, color, upquote}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{numbers=left, numberstyle=\tiny, stepnumber= 10, firstline=3, numbersep=15pt, breaklines=true, keepspaces=T, language=R, basicstyle=\scriptsize\ttfamily, commentstyle=\color{mygreen}, extendedchars=true, keywordstyle=\color{blue}, showspaces=false, showstringspaces=false, tabsize=2, showtabs=false, stringstyle=\color{mymauve}} % break long lines
+
+%% fonts setup
+
+\usepackage{gensymb} %degree symbol
+\usepackage[osf]{libertine} %load Linux Libertine so no need for installation
+\usepackage{unicode-math}
+\usepackage{float} % used to fix floating objects to a specific spot
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{threeparttable}
+\usepackage[hang]{footmisc}
+
+
+\defaultfontfeatures{Mapping=tex?text, Numbers={Proportional, OldStyle}, Ligatures=TeX}
+\setmathfont{Asana-Math.otf}
+
+
+%% tables and figures
+
+% include section number in figure and table numbers, renew in each section
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+
+\usepackage{makecell} % allow linebreaks in table cells using \thead (headers) and \makecell
+\robustify\tnote
+
+% table/figure captions (titles and legends)
+\usepackage{caption}
+\DeclareCaptionFormat{llap}{\llap{#1#2}#3\par} % table / figure number in left margin
+\DeclareCaptionLabelSeparator{spc}{\hspace{.075 in}} % space between table number and caption
+\captionsetup{font={color=blue, sf}, singlelinecheck=off, margin= 15pt, skip=4pt, size=small, labelfont={sc, sf}, format=llap, labelsep=spc,singlelinecheck=no} % same font as headers
+
+
+\makeatletter
+\let\runtitle\@title
+$if(sdate)$
+\newcommand{\rundate}{\hspace{.025 in} \cdot \hspace{.025 in} $sdate$}
+$else$
+\newcommand{\rundate}{}
+$endif$
+\makeatother
+
+ \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhf{}
+  % \rhead{ \nouppercase{\rightmark}  \hspace{.1 in} \cdot \hspace{.1 in} \thepage}
+  % \hspace{.05 in} of \hspace{.05 in} \pageref{LastPage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.5pt}
+   \rhead{ \footnotesize \nouppercase{\sc \runtitle} \nouppercase{\sc \rundate} \hspace{.025 in} \cdot \hspace{.055 in} page \thepage \hspace{.018 in} of \hspace{.0015 in}  \pageref*{LastPage}}
+
+   $if(confidential)$
+   \lhead{\textcolor{red}{\it Confidential; do not circulate}}
+   $endif$
+
+   \cfoot{\footnotesize
+   $if(company)$
+  $company$ \hspace{.025 in} \cdot \hspace{.05 in}
+  $endif$
+  $if(address)$
+  $address$ \hspace{.025 in} \cdot \hspace{.05 in}
+  $endif$
+  $if(phone)$
+  $phone$ \hspace{.025 in} \cdot \hspace{.05 in}
+  $endif$
+  $if(email)$
+  $email$
+  $endif$
+   }
+
+
+
+\usepackage{titlesec}
+
+\newfontfamily\headingfont[]{LinBiolinum_R.otf}
+\titleformat*{\section}{\sc \large \color[rgb]{0,0,0} \headingfont}
+\titleformat*{\subsection}{\large \headingfont}
+\titleformat*{\subsubsection}{\normalsize \headingfont}
+\renewcommand{\maketitlehooka}{\headingfont}
+
+\titlespacing\section{0pt}{8pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{6pt plus 2pt minus 2pt}{-2pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{2pt plus 2pt minus 2pt}{-3pt plus 2pt minus 2pt}
+
+
+% set up title page
+\pretitle{
+$if(logo)$
+\begin{flushright}
+\includegraphics[width=7cm, keepaspectratio]{$logo$}
+\end{flushright}
+$endif$
+\vskip 5em \begin{flushleft}\LARGE}
+\posttitle{\end{flushleft}}
+
+\preauthor{\par\begin{flushleft}\large\vskip -.5em}
+\postauthor{\end{flushleft}}
+
+\predate{\par\begin{flushleft}\large\vskip -1em}
+\postdate{\end{flushleft}  }
+
+\makeatletter
+\def\@seccntformat#1{\llap{\csname the#1\endcsname \hspace{.075 in}}}
+\makeatother
+
+% suppress chapter in section numbering
+\renewcommand*\thesection{\arabic{section}}
+
+% spacing of bulleted lists
+\usepackage{enumitem} %control spacing of enumerated items
+\setlist[itemize]{noitemsep, topsep=0pt}
+
+%% remove 'abstract' title, justify text
+\renewcommand{\abstractname}{\headingfont \large}
+\renewenvironment{abstract} {\abstractname \justifying \rm \normalsize }
+
+\usepackage{tikz}
+
+\usepackage[detect-all]{siunitx}
+
+\sisetup{table-format = 3.3, input-symbols = >()<, tight-spacing = true, table-space-text-pre = \(<\)} % table-align-text-post = false,
+
+
+\newlength\tbspace
+\setlength\tbspace{.25in}
+
+% units.
+\usepackage{units}
+
+% graphix
+%\usepackage{graphicx}
+%\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
 
 \begin{document}
 
 \maketitle
 
 $if(abstract)$
-\begin{abstract}
-$abstract$
-\end{abstract}
+abstract:  \thispagestyle{firststyle} \vskip 30em $abstract$ \clearpage
 $endif$
 
-$for(include-before)$
-$include-before$
-
-$endfor$
 $if(toc)$
 {
 \hypersetup{linkcolor=black}
@@ -474,12 +356,15 @@ $if(toc)$
 \tableofcontents
 }
 $endif$
+
 $if(lot)$
 \listoftables
 $endif$
+
 $if(lof)$
 \listoffigures
 $endif$
+
 $body$
 
 $if(natbib)$
