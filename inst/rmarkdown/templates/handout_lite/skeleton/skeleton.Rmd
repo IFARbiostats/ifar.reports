@@ -6,6 +6,10 @@ author:
 date: "`r Sys.Date()`"
 documentclass: article
 output: ifar.reports::handout_lite
+company: Interventional Studies in Aging Center
+address: 1200 Centre St. Boston, MA, USA 02131
+phone: 617.971.5386
+email: stats@hsl.harvard.edu
 logo: logo.pdf
 confidential: true
 toc: false

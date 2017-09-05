@@ -346,7 +346,9 @@ $endif$
 \maketitle
 
 $if(abstract)$
-abstract:  \thispagestyle{firststyle} \vskip 30em $abstract$ \clearpage
+\begin{abstract}
+$abstract$ \clearpage
+\end{abstract}
 $endif$
 
 $if(toc)$
