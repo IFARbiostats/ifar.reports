@@ -1,4 +1,4 @@
 name: IFAR PDF Handout (lite)
 description: >
   Template for creating a reproducible handout designed by Dr. Thomas G. Travison. A lighter and more friendly templates reworked in 2017.
-create_dir: FALSE
+create_dir: false
