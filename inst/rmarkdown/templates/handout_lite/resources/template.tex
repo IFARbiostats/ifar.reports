@@ -180,12 +180,6 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
-%%%%%%%%%%%%%%%%%%%%%% Customized tgt 2014.12.16 %%%%%%%%%%%
-% Modified by Hao 7/23/2015
-%     - use package libertine and unicode-math to avoid fonts installation
-%     - Move xcolor to the top to avoid package loading error
-%     - Change dollarsign < dollarsign to \(  < \) to avoid a pandoc error
-
 %% document formatting
 \usepackage[table]{xcolor} % colors for tables and text
 \usepackage{ragged2e} % justifying text
@@ -196,19 +190,10 @@ $endfor$
 \usepackage{tabularx,tabulary}
 \usepackage{tabu}
 
-
-
-%% codelisting at end of file
-\usepackage{listings, color, upquote}
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
-\lstset{numbers=left, numberstyle=\tiny, stepnumber= 10, firstline=3, numbersep=15pt, breaklines=true, keepspaces=T, language=R, basicstyle=\scriptsize\ttfamily, commentstyle=\color{mygreen}, extendedchars=true, keywordstyle=\color{blue}, showspaces=false, showstringspaces=false, tabsize=2, showtabs=false, stringstyle=\color{mymauve}} % break long lines
-
 %% fonts setup
 
 \usepackage{gensymb} %degree symbol
-\usepackage[osf]{libertine} %load Linux Libertine so no need for installation
+\usepackage{libertine} %load Linux Libertine so no need for installation
 \usepackage{unicode-math}
 \usepackage{float} % used to fix floating objects to a specific spot
 \usepackage{array}
@@ -219,8 +204,6 @@ $endfor$
 \usepackage{threeparttable}
 \usepackage[hang]{footmisc}
 
-
-\defaultfontfeatures{Mapping=tex?text, Numbers={Proportional, OldStyle}, Ligatures=TeX}
 \setmathfont{Asana-Math.otf}
 
 
@@ -337,9 +320,18 @@ $endif$
 % units.
 \usepackage{units}
 
-% graphix
-%\usepackage{graphicx}
-%\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+$if(highlighting-macros)$
+%% change fontsize of R code
+\let\oldShaded\Shaded
+\let\endoldShaded\endShaded
+\renewenvironment{Shaded}{\footnotesize\oldShaded}{\endoldShaded}
+
+%% change fontsize of output
+\let\oldverbatim\verbatim
+\let\endoldverbatim\endverbatim
+\renewenvironment{verbatim}{\footnotesize\oldverbatim}{\endoldverbatim}
+$endif$
+
 
 \begin{document}
 

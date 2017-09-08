@@ -1,16 +1,18 @@
 ---
-title: "A Demonstration of IFAR.handout PDF template"
+title: "Handout (lite)"
 author: 
 - Hao Zhu, MA 
+- Timothy Tsai, MPH
 - Thomas G. Travison, PhD
 date: "`r Sys.Date()`"
 documentclass: article
-output: ifar.reports::handout_lite
+output: 
+  ifar.reports::handout_lite:
+    keep_tex: true
 company: Interventional Studies in Aging Center
 address: 1200 Centre St. Boston, MA, USA 02131
 phone: 617.971.5386
 email: stats@hsl.harvard.edu
-logo: "`r ifar.reports::hsl_logo()`"
 confidential: true
 toc: false
 lot: false
@@ -19,24 +21,16 @@ lof: false
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
+You may consider the following options in the YAML section:
 
-# Introduction
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-# Section 2
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{yaml}
+company, address, phone, email: Other than order, there are actually no difference 
+  among these options
+```
 
 ```{r}
-summary(cars)
+summary(mtcars)
 ```
-
-## Section 2.1
-You can also embed plots, for example:
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
